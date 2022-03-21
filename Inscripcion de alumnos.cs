@@ -9,7 +9,7 @@ namespace Parcial
     internal class Inscripcion_de_alumnos
     {
         public string nombre { get; set; }
-        public string grado { get; set; }
+        public int grado { get; set; }
         public DateTime fecha { get; set; }
     }
 }

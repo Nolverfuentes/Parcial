@@ -44,6 +44,14 @@ namespace Parcial
             dataGridView1.DataSource = listadodealumnos;
             dataGridView1.Refresh();
         }
+        private void Mostrar()
+        {
+            dataGridView2.DataSource = null;
+            dataGridView2.Refresh();
+
+            dataGridView2.DataSource = inscripcionAlm;
+            dataGridView2.Refresh();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -54,17 +62,24 @@ namespace Parcial
             {
 
                 Inscripcion_de_alumnos inscripcion = new Inscripcion_de_alumnos();
-                inscripcion.nombre = textBox1.Text;
-                dato.numero = (int)numericUpDown1.Value;
-                dato.fecha = dateTimePicker1.Value;
+                inscripcion.nombre = comboBox1.SelectedItem.ToString(); 
+                inscripcion.grado = (int)numericUpDown1.Value;
+                inscripcion.fecha = dateTimePicker1.Value;
 
-                datos.Add(dato);
+                inscripcionAlm.Add(inscripcion);
             }
             else
             {
-                datos[posicion].numero++;
-                datos[posicion].fecha = DateTime.Now;
+                
+                inscripcionAlm[posicion].fecha = DateTime.Now;
             }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            inscripcionAlm = inscripcionAlm.OrderByDescending(x => x.grado).ToList(); 
+            Mostrar();
 
         }
     }
